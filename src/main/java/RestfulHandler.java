@@ -3,13 +3,11 @@ import java.io.StringWriter;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static spark.Spark.post;
-import static spark.Spark.put;
-import static spark.Spark.get;
-
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+
+import static spark.Spark.*;
 
 
 /**
@@ -62,17 +60,18 @@ public class RestfulHandler {
                     TransactionSchema creation = mapper.readValue(request.body(), TransactionSchema.class);
                     if (!creation.isValid(Long.parseLong(id))) {
                         response.status(HTTP_BAD_REQUEST);
-                        return "";
+                        return "Bad Request";
                     }
-                    transaction.setAmount(creation.getAmount());
-                    transaction.setType(creation.getType());
-                    transaction.setParent_id(creation.getParent_id());
+//                    boolean sucessfullUpdate =
+                    trans.updateTransaction(id, creation.getAmount(), creation.getType(), creation.getParent_id());
+
                     response.status(200); // Proper status for update 201?
                     //response.type("application/json");
                     return "Transaction " + id + " has been updated";
+                        //: "Error updating Transaction";
                 } catch (JsonParseException jpe) {
                     response.status(HTTP_BAD_REQUEST);
-                    return "";
+                    return "Bad Request";
                 }
             // If we try to update a non existing transaction
             } else {
@@ -87,6 +86,24 @@ public class RestfulHandler {
 
            Implement destroy call
          */
+
+        get("/types", (request, response) -> {
+//            if (trans.getTransactionsByType(name) == null) {
+//                return "No transaction with a type have been made yet";
+//            } else {
+                return RestHelpers.dataToJson(trans.getAllTransactionTypes());
+//            }
+        });
+
+        get("/types/:name", (request, response) -> {
+            String name = request.params(":name");
+            if (trans.getTransactionsByType(name) == null) {
+                return "No transaction of this type has been made yet";
+            } else return trans.getTransactionsByType(name);
+        });
+
+
+
 
 //        get("/sum/:id", (request, response) -> {
 //            String id = request.params(":id");
@@ -104,6 +121,8 @@ public class RestfulHandler {
 //                return  "Transaction not found";
 //            }
 //        });
+
+
 
 
     }
