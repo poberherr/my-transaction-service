@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Created by paTimu on 1/14/2016.
@@ -39,20 +38,21 @@ public class TransactionManager {
         // TODO: No side effects YET
         oldTransaction.setAmount(amount);
 
-        // Check if the transaction type changed
-        if (oldTransaction.getType() == null){
-            addTransactionToType(oldTransaction.getId(), newType);
-        } else if (!oldTransaction.getType().equals(newType)) {
-            removeTransactionFromType(oldTransaction.getId(), oldTransaction.getType());
-            addTransactionToType(oldTransaction.getId(), newType);
-        }
-        oldTransaction.setType(newType);
+        oldTransaction = handleTransactionTypeChange(oldTransaction, newType);
 
         oldTransaction.setParent_id(parent_id);
-
-
-
         // TODO: Return false on error update
+    }
+
+    public Transaction handleTransactionTypeChange(Transaction transaction, String newType){
+        // Check if the transaction type changed
+        if (transaction.getType() == null) addTransactionToType(transaction.getId(), newType);
+        else if (!transaction.getType().equals(newType)) {
+            removeTransactionFromType(transaction.getId(), transaction.getType());
+            addTransactionToType(transaction.getId(), newType);
+        }
+        transaction.setType(newType);
+        return transaction;
     }
 
     public void removeTransactionFromType(long transactionId, String type){
