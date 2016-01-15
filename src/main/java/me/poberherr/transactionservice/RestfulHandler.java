@@ -36,7 +36,7 @@ public class RestfulHandler {
         /**
          *      Sums
          */
-//        get("/sum", new SumIndexHandler(model));
+        get("/sum", new SumIndexHandler(model));
         get("/sum/:id", new SumSingleHandler(model));
     }
 }
