@@ -27,6 +27,5 @@ public class SumSingleHandler extends AbstractRequestHandler<EmptyPayload> {
 
         double amount = model.calculateSumIncludingChildren(Long.valueOf(id));
         return new Answer(201, "{\"sum\":" + amount + "}");
-//        return Answer.ok(dataToJson(transactionTypes));
     }
 }

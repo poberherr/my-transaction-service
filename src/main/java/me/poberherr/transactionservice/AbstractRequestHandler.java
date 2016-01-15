@@ -59,6 +59,7 @@ public abstract class AbstractRequestHandler<V extends Validable> implements Req
                 value = objectMapper.readValue(request.body(), valueClass);
             }
             Map<String, String> urlParams = request.params();
+
             Answer answer = process(value, urlParams, shouldReturnHtml(request));
             response.status(answer.getCode());
             if (shouldReturnHtml(request)) {
