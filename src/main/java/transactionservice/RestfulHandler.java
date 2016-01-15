@@ -6,10 +6,7 @@ import static spark.Spark.put;
 import static spark.Spark.delete;
 import static spark.Spark.port;
 
-import transactionservice.handlers.TransactionCreateHandler;
-import transactionservice.handlers.TransactionIndexHandler;
-import transactionservice.handlers.TransactionSingleHandler;
-import transactionservice.handlers.TransactionUpdateHandler;
+import transactionservice.handlers.*;
 import transactionservice.model.Model;
 import transactionservice.store.StoreManager;
 
@@ -39,7 +36,7 @@ public class RestfulHandler {
         /**
          *      Types
          */
-//        get("/types", new TypeIndexHandler(model));
+        get("/types", new TypeIndexHandler(model));
 //        get("/types/:name", new TypeSingleHandler(model));
 
 
