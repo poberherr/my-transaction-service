@@ -39,15 +39,15 @@ public class RestfulHandler {
         /**
          *      Types
          */
-        get("/types", new TypeIndexHandler(model));
-        get("/types/:name", new TypeSingleHandler(model));
+//        get("/types", new TypeIndexHandler(model));
+//        get("/types/:name", new TypeSingleHandler(model));
 
 
         /**
          *      Sums
          */
-        get("/sum", new SumIndexHandler(model));
-        get("/sum/:id", new SumSingleHandler(model));
+//        get("/sum", new SumIndexHandler(model));
+//        get("/sum/:id", new SumSingleHandler(model));
     }
 }
 
