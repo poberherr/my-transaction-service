@@ -38,7 +38,7 @@ Personal comments:
     It basically took me the first two days to get used to Java again (last time I was still in University);
     Most time I needed was to find out which frameworks to use, which tools and to adapt my coding style back to Java.
 
--I did't have the time to code more test - which I really would have liked. Also some functional tests instead of just
+- I did't have the time to code more test - which I really would have liked. Also some functional tests instead of just
 simpler unit tests.
 
 
