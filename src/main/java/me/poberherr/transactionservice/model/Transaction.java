@@ -77,44 +77,4 @@ public class Transaction {
     public String toString() {
         return "me.poberherr.transactionservice.model.Transaction(id=" + this.id + ", amount=" + this.amount + ", type=" + this.type + ", parent_id=" + this.parent_id + ")";
     }
-//
-//    public long getId() {
-//        return id;
-//    }
-//
-//    public double getAmount() {
-//        return amount;
-//    }
-//
-//    public void setAmount(double amount) {
-//        this.amount = amount;
-//    }
-//
-//
-//    public String getType() {
-//        return type;
-//    }
-//
-//    public void setType(String type) {
-//        this.type = type;
-//    }
-//
-//
-//    public long getParent_id() {
-//        return parent_id;
-//    }
-//
-//    public void setParent_id(long parent_id) {
-//        this.parent_id = parent_id;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "me.poberherr.transactionservice.model.Transaction{" +
-//                "id=" + id +
-//                ", amount=" + amount +
-//                ", type='" + type + '\'' +
-//                ", parent_id=" + parent_id +
-//                '}';
-//    }
 }

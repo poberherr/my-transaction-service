@@ -51,4 +51,8 @@ public class Answer {
     public static Answer ok(String body) {
         return new Answer(200, body);
     }
+
+    public static Answer empty() {
+        return new Answer(204, "");
+    }
 }

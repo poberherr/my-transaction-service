@@ -3,10 +3,7 @@ package me.poberherr.transactionservice.store;
 import me.poberherr.transactionservice.model.Model;
 import me.poberherr.transactionservice.model.Transaction;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class StoreManager implements Model {
 
@@ -29,7 +26,7 @@ public class StoreManager implements Model {
         return transactionOfTypes;
     }
 
-    public Object getAllTransactions() {
+    public Map getAllTransactions() {
         return transactions;
     }
 
@@ -87,6 +84,8 @@ public class StoreManager implements Model {
             transactionOfTypes.put(String.valueOf(newParent), idList);
         }
     }
+
+    public double
 
     public Transaction handleTransactionTypeChange(Transaction transaction, String newType) {
         // Check if the transaction type changed

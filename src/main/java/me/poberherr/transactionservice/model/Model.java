@@ -6,7 +6,7 @@ import java.util.Map;
 public interface Model {
     Map<String, List<Long>> getAllTransactionTypes();
 
-    Object getAllTransactions();
+    Map getAllTransactions();
 
     long createTransaction();
 

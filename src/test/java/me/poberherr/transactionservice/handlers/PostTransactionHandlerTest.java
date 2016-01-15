@@ -27,7 +27,7 @@ public class PostTransactionHandlerTest {
         expect(model.createTransaction()).andReturn(Long.valueOf(1));
         replay(model);
 
-        TransactionSingleHandler handler = new TransactionSingleHandler(model);
+        TransactionCreateHandler handler = new TransactionCreateHandler(model);
         assertEquals(new Answer(201, "1"), handler.process(newTransaction, Collections.emptyMap(), false));
 
         verify(model);
