@@ -42,7 +42,7 @@ Personal comments:
     just simpler unit tests.
 
 
-    Spark: Not the same as the "known" Spark - but seems to be nice.
-    Lombok: Seems to be kinda handy but I got rid of it, for clarity.
-    no .gitignore: Since I checked my trash in already - I thought I can also leave it there for now.
-    git: push -f never a good choice :)
+- Spark: Not the same as the "known" Spark - but seems to be nice.
+- Lombok: Seems to be kinda handy but I got rid of it, for clarity.
+- no .gitignore: Since I checked my trash in already - I thought I can also leave it there for now.
+- git: push -f never a good choice :)
