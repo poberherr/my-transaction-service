@@ -12,6 +12,8 @@ public interface Model {
 
     void updateTransaction(String id, double amount, String newType, long parent_id);
 
+    double calculateSumOfAllTransactions();
+
     double calculateSumIncludingChildren(long parentId);
 
     Transaction handleTransactionTypeChange(Transaction transaction, String newType);
