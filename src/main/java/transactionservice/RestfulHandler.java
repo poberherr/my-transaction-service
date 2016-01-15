@@ -37,7 +37,7 @@ public class RestfulHandler {
          *      Types
          */
         get("/types", new TypeIndexHandler(model));
-//        get("/types/:name", new TypeSingleHandler(model));
+        get("/types/:name", new TypeSingleHandler(model));
 
 
         /**
