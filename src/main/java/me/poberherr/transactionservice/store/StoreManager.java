@@ -86,6 +86,15 @@ public class StoreManager implements Model {
         }
     }
 
+    public double calculateSumOfAllTransactions(){
+        double sum = 0;
+        for (String key : transactions.keySet()) {
+            Transaction trans = getTransactionById(key);
+            sum += trans.getAmount();
+        }
+        return sum;
+    }
+
     public double calculateSumIncludingChildren(long parentId){
         double sum = 0;
         String parentKey = String.valueOf(parentId);
