@@ -15,11 +15,14 @@ public class StoreManager implements Model {
      */
     private Map<String, Transaction> transactions;
     private Map<String, List<Long>> transactionOfTypes;
+    private Map<String, List<Long>> transactionParentToChild;
+
     private static int nextId = 1;
 
     public StoreManager() {
         this.transactions = new HashMap<String, Transaction>();
         this.transactionOfTypes = new HashMap<String, List<Long>>();
+        this.transactionParentToChild = new HashMap<String, List<Long>>();
     }
 
     public Map<String, List<Long>> getAllTransactionTypes() {
@@ -44,9 +47,45 @@ public class StoreManager implements Model {
         oldTransaction.setAmount(amount);
 
         oldTransaction = handleTransactionTypeChange(oldTransaction, newType);
+        oldTransaction = handleParentChange(oldTransaction, parent_id);
 
-        oldTransaction.setParent_id(parent_id);
-        // TODO: Return false on error update
+        //oldTransaction.setParent_id(parent_id);
+    }
+
+    public Transaction handleParentChange(Transaction transaction, long newParent){
+        if (transaction.getParent_id() == newParent){
+            return transaction;
+        }
+        if (transaction.getParent_id() == 0) {
+            addParentToChild();
+            return transaction;
+        }
+        removeParentFromChild(transaction.getId(), transaction.getParent_id());
+        addParentToChild(transaction.getId(), newParent);
+        transaction.setParent_id(newParent);
+        return transaction;
+    }
+
+    public void removeParentFromChild(long childId, long oldParent){
+        List<Long> idList = transactionParentToChild.get(oldParent);
+        idList.remove(childId);
+
+        // Maybe we emptied the key content and need to remove
+        if (idList.isEmpty()){
+            transactionParentToChild.remove(oldParent);
+        }
+    }
+
+    public void addParentToChild(long childId, long newParent){
+        boolean parentExists = transactionParentToChild.containsKey(newParent);
+        if (parentExists) {
+            List<Long> idList = transactionParentToChild.get(newParent);
+            idList.add(childId);
+        } else {
+            List<Long> idList = new ArrayList<>();
+            idList.add(childId);
+            transactionOfTypes.put(String.valueOf(newParent), idList);
+        }
     }
 
     public Transaction handleTransactionTypeChange(Transaction transaction, String newType){
