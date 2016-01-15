@@ -1,4 +1,4 @@
-package transactionservice;
+package me.poberherr.transactionservice;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import spark.Request;
 import spark.Response;
 import spark.Route;
-import transactionservice.handlers.EmptyPayload;
-import transactionservice.model.Model;
+import me.poberherr.transactionservice.handlers.EmptyPayload;
+import me.poberherr.transactionservice.model.Model;
 
 import java.io.IOException;
 import java.util.Map;

@@ -1,10 +1,7 @@
-package transactionservice.model;
+package me.poberherr.transactionservice.model;
 
 import lombok.Data;
 
-/**
- * Created by paTimu on 1/13/2016.
- */
 @Data
 public class Transaction {
     private long id;
@@ -48,7 +45,7 @@ public class Transaction {
 //
 //    @Override
 //    public String toString() {
-//        return "transactionservice.model.Transaction{" +
+//        return "me.poberherr.transactionservice.model.Transaction{" +
 //                "id=" + id +
 //                ", amount=" + amount +
 //                ", type='" + type + '\'' +

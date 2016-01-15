@@ -1,13 +1,10 @@
-package transactionservice.store;
+package me.poberherr.transactionservice.store;
 
-import transactionservice.model.Model;
-import transactionservice.model.Transaction;
+import me.poberherr.transactionservice.model.Model;
+import me.poberherr.transactionservice.model.Transaction;
 
 import java.util.*;
 
-/**
- * Created by paTimu on 1/14/2016.
- */
 public class StoreManager implements Model {
 
     /**
@@ -57,7 +54,7 @@ public class StoreManager implements Model {
             return transaction;
         }
         if (transaction.getParent_id() == 0) {
-            addParentToChild();
+            addParentToChild(transaction.getId(), newParent);
             return transaction;
         }
         removeParentFromChild(transaction.getId(), transaction.getParent_id());

@@ -1,13 +1,7 @@
-package transactionservice.handlers;
+package me.poberherr.transactionservice.handlers;
 
-/**
- * Created by paTimu on 1/14/2016.
- */
 import lombok.Data;
-import transactionservice.Validable;
-
-import java.util.LinkedList;
-import java.util.List;
+import me.poberherr.transactionservice.Validable;
 
 @Data
 class TransactionUpdateSchema implements Validable {

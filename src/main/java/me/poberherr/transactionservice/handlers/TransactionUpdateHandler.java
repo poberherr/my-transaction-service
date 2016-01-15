@@ -1,18 +1,12 @@
-package transactionservice.handlers;
+package me.poberherr.transactionservice.handlers;
 
-import spark.Request;
-import spark.Response;
-import transactionservice.AbstractRequestHandler;
-import transactionservice.Answer;
-import transactionservice.model.Model;
-import transactionservice.model.Transaction;
+import me.poberherr.transactionservice.AbstractRequestHandler;
+import me.poberherr.transactionservice.Answer;
+import me.poberherr.transactionservice.model.Model;
+import me.poberherr.transactionservice.model.Transaction;
 
 import java.util.Map;
-import java.util.Optional;
 
-/**
- * Created by paTimu on 1/14/2016.
- */
 public class TransactionUpdateHandler extends AbstractRequestHandler<TransactionUpdateSchema> {
 
     private Model model;

@@ -1,4 +1,4 @@
-package transactionservice;
+package me.poberherr.transactionservice;
 
 public class Answer {
 

@@ -1,14 +1,11 @@
-package transactionservice.handlers;
+package me.poberherr.transactionservice.handlers;
 
-/**
- * Created by paTimu on 1/15/2016.
- */
 import java.util.Map;
 
-import transactionservice.AbstractRequestHandler;
-import transactionservice.Answer;
-import transactionservice.model.Model;
-import transactionservice.model.Transaction;
+import me.poberherr.transactionservice.AbstractRequestHandler;
+import me.poberherr.transactionservice.Answer;
+import me.poberherr.transactionservice.model.Model;
+import me.poberherr.transactionservice.model.Transaction;
 
 public class TransactionSingleHandler extends AbstractRequestHandler<EmptyPayload> {
 

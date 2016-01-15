@@ -1,4 +1,4 @@
-package transactionservice;
+package me.poberherr.transactionservice;
 
 import java.util.Map;
 

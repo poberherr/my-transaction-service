@@ -1,10 +1,6 @@
-package transactionservice.handlers;
+package me.poberherr.transactionservice.handlers;
 
-import transactionservice.Validable;
-
-/**
- * Created by paTimu on 1/14/2016.
- */
+import me.poberherr.transactionservice.Validable;
 
 public class EmptyPayload implements Validable {
     @Override
