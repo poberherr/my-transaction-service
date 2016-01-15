@@ -13,7 +13,7 @@ public class TypeIndexHandler extends AbstractRequestHandler<EmptyPayload> {
     }
 
     @Override
-    protected Answer processImpl(EmptyPayload value, Map<String,String> urlParams, boolean shouldReturnHtml) {
+    protected Answer processImpl(EmptyPayload value, Map<String, String> urlParams, boolean shouldReturnHtml) {
         String json = dataToJson(model.getAllTransactionTypes());
         return Answer.ok(json);
     }

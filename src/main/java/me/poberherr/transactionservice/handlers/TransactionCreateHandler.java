@@ -16,7 +16,7 @@ public class TransactionCreateHandler extends AbstractRequestHandler<EmptyPayloa
     }
 
     @Override
-    protected Answer processImpl(EmptyPayload value, Map<String,String> urlParams, boolean shouldReturnHtml) {
+    protected Answer processImpl(EmptyPayload value, Map<String, String> urlParams, boolean shouldReturnHtml) {
         long id = model.createTransaction();
         return new Answer(201, Long.toString(id));
     }

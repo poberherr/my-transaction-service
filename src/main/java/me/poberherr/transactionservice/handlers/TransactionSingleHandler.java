@@ -1,11 +1,11 @@
 package me.poberherr.transactionservice.handlers;
 
-import java.util.Map;
-
 import me.poberherr.transactionservice.AbstractRequestHandler;
 import me.poberherr.transactionservice.Answer;
 import me.poberherr.transactionservice.model.Model;
 import me.poberherr.transactionservice.model.Transaction;
+
+import java.util.Map;
 
 public class TransactionSingleHandler extends AbstractRequestHandler<EmptyPayload> {
 
@@ -14,7 +14,7 @@ public class TransactionSingleHandler extends AbstractRequestHandler<EmptyPayloa
     }
 
     @Override
-    protected Answer processImpl(EmptyPayload value, Map<String,String> urlParams, boolean shouldReturnHtml) {
+    protected Answer processImpl(EmptyPayload value, Map<String, String> urlParams, boolean shouldReturnHtml) {
         if (!urlParams.containsKey(":id")) {
             throw new IllegalArgumentException();
         }

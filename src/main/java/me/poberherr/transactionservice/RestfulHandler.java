@@ -1,19 +1,16 @@
 package me.poberherr.transactionservice;
 
-import static spark.Spark.get;
-import static spark.Spark.post;
-import static spark.Spark.put;
-import static spark.Spark.delete;
-
 import me.poberherr.transactionservice.handlers.*;
 import me.poberherr.transactionservice.model.Model;
 import me.poberherr.transactionservice.store.StoreManager;
+
+import static spark.Spark.*;
 
 public class RestfulHandler {
 
     private StoreManager trans = new StoreManager();
 
-    public void listen () {
+    public void listen() {
 
         Model model = new StoreManager();
 

@@ -34,8 +34,8 @@ public class TransactionUpdateHandler extends AbstractRequestHandler<Transaction
         }
 
         long parent_id;
-        if (value.getParent_id() != 0){
-            if (transaction.getId() == value.getParent_id()){
+        if (value.getParent_id() != 0) {
+            if (transaction.getId() == value.getParent_id()) {
                 return new Answer(403, "Transaction cant be its own parent");
             }
             parent_id = value.getParent_id();
@@ -45,7 +45,6 @@ public class TransactionUpdateHandler extends AbstractRequestHandler<Transaction
         return new Answer(200);
     }
 }
-
 
 
 //        Transaction transaction = trans.getTransactionById(id);

@@ -3,11 +3,11 @@ package me.poberherr.transactionservice;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import me.poberherr.transactionservice.handlers.EmptyPayload;
+import me.poberherr.transactionservice.model.Model;
 import spark.Request;
 import spark.Response;
 import spark.Route;
-import me.poberherr.transactionservice.handlers.EmptyPayload;
-import me.poberherr.transactionservice.model.Model;
 
 import java.io.IOException;
 import java.util.Map;
@@ -19,7 +19,7 @@ public abstract class AbstractRequestHandler<V extends Validable> implements Req
 
     private static final int HTTP_BAD_REQUEST = 400;
 
-    public AbstractRequestHandler(Class<V> valueClass, Model model){
+    public AbstractRequestHandler(Class<V> valueClass, Model model) {
         this.valueClass = valueClass;
         this.model = model;
     }
@@ -34,7 +34,7 @@ public abstract class AbstractRequestHandler<V extends Validable> implements Req
             ObjectMapper mapper = new ObjectMapper();
             mapper.enable(SerializationFeature.INDENT_OUTPUT);
             return mapper.writeValueAsString(data);
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new RuntimeException("IOException from a StringWriter?");
         }
     }
