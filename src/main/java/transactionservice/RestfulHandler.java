@@ -8,6 +8,7 @@ import static spark.Spark.port;
 
 import transactionservice.handlers.TransactionCreateHandler;
 import transactionservice.handlers.TransactionIndexHandler;
+import transactionservice.handlers.TransactionSingleHandler;
 import transactionservice.handlers.TransactionUpdateHandler;
 import transactionservice.model.Model;
 import transactionservice.store.StoreManager;
@@ -25,13 +26,9 @@ public class RestfulHandler {
 
         post("/transaction", new TransactionCreateHandler(model));
         get("/transaction", new TransactionIndexHandler(model));
+        get("/transaction/:id", new TransactionSingleHandler(model));
         put("/transaction/:id", new TransactionUpdateHandler(model));
 
-//        get("/transaction", (request, response) -> {
-//            response.status(200);
-//            response.type("application/json");
-//            return trans.getAllTransactions();
-//        });
 
 /*
         get("/transaction/:id", (request, response) -> {
