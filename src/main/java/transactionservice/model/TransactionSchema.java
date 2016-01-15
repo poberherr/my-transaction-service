@@ -1,3 +1,5 @@
+package transactionservice.model;
+
 import lombok.Data;
 
 /**

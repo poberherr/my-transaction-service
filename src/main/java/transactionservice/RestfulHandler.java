@@ -1,33 +1,39 @@
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+package transactionservice;
 
-import static spark.Spark.*;
+import static spark.Spark.get;
+import static spark.Spark.post;
+import static spark.Spark.put;
+import static spark.Spark.delete;
+import static spark.Spark.port;
 
+import transactionservice.handlers.TransactionCreateHandler;
+import transactionservice.handlers.TransactionIndexHandler;
+import transactionservice.handlers.TransactionUpdateHandler;
+import transactionservice.model.Model;
+import transactionservice.store.StoreManager;
 
 /**
  * Created by paTimu on 1/13/2016.
  */
 public class RestfulHandler {
 
-    private static final int HTTP_BAD_REQUEST = 400;
-    private TransactionManager trans = new TransactionManager();
-
+    private StoreManager trans = new StoreManager();
 
     public void listen () {
 
-        post("/transaction", (request, response) -> {
-            long id = trans.createTransaction();
-            response.status(201); // 201 Created
-            response.type("application/json");
-            return id;
-        });
+        Model model = new StoreManager();
 
-        get("/transaction", (request, response) -> {
-            response.status(200);
-            response.type("application/json");
-            return RestHelpers.dataToJson(trans.getAllTransactions());
-        });
+        post("/transaction", new TransactionCreateHandler(model));
+        get("/transaction", new TransactionIndexHandler(model));
+        put("/transaction/:id", new TransactionUpdateHandler(model));
 
+//        get("/transaction", (request, response) -> {
+//            response.status(200);
+//            response.type("application/json");
+//            return trans.getAllTransactions();
+//        });
+
+/*
         get("/transaction/:id", (request, response) -> {
             String id = request.params(":id");
             Transaction transaction = trans.getTransactionById(id);
@@ -37,7 +43,7 @@ public class RestfulHandler {
                 return RestHelpers.dataToJson(transaction);
             } else {
                 response.status(404); // 404 Not found
-                return  "Transaction not found, please create first a transaction by making an empty post call" +
+                return  "transactionservice.model.Transaction not found, please create first a transaction by making an empty post call" +
                         " to /transaction";
             }
         });
@@ -61,8 +67,8 @@ public class RestfulHandler {
 
                     response.status(200); // Proper status for update 201?
                     //response.type("application/json");
-                    return "Transaction " + id + " has been updated";
-                        //: "Error updating Transaction";
+                    return "transactionservice.model.Transaction " + id + " has been updated";
+                        //: "Error updating transactionservice.model.Transaction";
                 } catch (JsonParseException jpe) {
                     response.status(HTTP_BAD_REQUEST);
                     return "Bad Request";
@@ -70,23 +76,23 @@ public class RestfulHandler {
             // If we try to update a non existing transaction
             } else {
                 response.status(404); // 404 Not found
-                return  "Transaction not found, please create first a transaction by making an empty post call" +
+                return  "transactionservice.model.Transaction not found, please create first a transaction by making an empty post call" +
                         " to /transaction";
             }
         });
-
+*/
         /* The question is if a transaction ever can be deleted.
            In my billing experience I vote for creating an inverse of the transaction
 
            Implement destroy call
          */
-
+/*
         get("/types", (request, response) -> {
-//            if (trans.getTransactionsByType(name) == null) {
-//                return "No transaction with a type have been made yet";
-//            } else {
+            if (trans.getTransactionsByType(name) == null) {
+                return "No transaction have been made yet";
+            } else {
                 return RestHelpers.dataToJson(trans.getAllTransactionTypes());
-//            }
+            }
         });
 
         get("/types/:name", (request, response) -> {
@@ -101,7 +107,7 @@ public class RestfulHandler {
 
 //        get("/sum/:id", (request, response) -> {
 //            String id = request.params(":id");
-//            Transaction transaction = transactions.get(id);
+//            transactionservice.model.Transaction transaction = transactions.get(id);
 //            if (transaction != null) {
 //                response.status(200);
 //                //response.type("application/json");
@@ -109,15 +115,15 @@ public class RestfulHandler {
 //                //return "{\"sum\" :" + transaction.getAmount() +"}";
 //
 //                System.out.println(getAllChildren(transaction));
-//                return RestHelpers.dataToJson(getAllChildren(transaction));
+//                return transactionservice.RestHelpers.dataToJson(getAllChildren(transaction));
 //            } else {
 //                response.status(404); // 404 Not found
-//                return  "Transaction not found";
+//                return  "transactionservice.model.Transaction not found";
 //            }
 //        });
 
 
-
+*/
 
     }
 }

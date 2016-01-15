@@ -1,9 +1,14 @@
+package transactionservice.store;
+
+import transactionservice.model.Model;
+import transactionservice.model.Transaction;
+
 import java.util.*;
 
 /**
  * Created by paTimu on 1/14/2016.
  */
-public class TransactionManager {
+public class StoreManager implements Model {
 
     /**
      * Map holding the transactions
@@ -12,7 +17,7 @@ public class TransactionManager {
     private Map<String, List<Long>> transactionOfTypes;
     private static int nextId = 1;
 
-    public TransactionManager() {
+    public StoreManager() {
         this.transactions = new HashMap<String, Transaction>();
         this.transactionOfTypes = new HashMap<String, List<Long>>();
     }
