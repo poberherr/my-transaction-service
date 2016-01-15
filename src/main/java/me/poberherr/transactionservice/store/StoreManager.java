@@ -45,8 +45,6 @@ public class StoreManager implements Model {
 
         oldTransaction = handleTransactionTypeChange(oldTransaction, newType);
         oldTransaction = handleParentChange(oldTransaction, parent_id);
-
-        //oldTransaction.setParent_id(parent_id);
     }
 
     public Transaction handleParentChange(Transaction transaction, long newParent) {
@@ -55,11 +53,14 @@ public class StoreManager implements Model {
         }
         if (transaction.getParent_id() == 0) {
             addParentToChild(transaction.getId(), newParent);
-            return transaction;
+
+        } else {
+            removeParentFromChild(transaction.getId(), transaction.getParent_id());
+            addParentToChild(transaction.getId(), newParent);
         }
-        removeParentFromChild(transaction.getId(), transaction.getParent_id());
-        addParentToChild(transaction.getId(), newParent);
+
         transaction.setParent_id(newParent);
+        transactions.put(String.valueOf(transaction.getId()), transaction);
         return transaction;
     }
 
@@ -81,11 +82,27 @@ public class StoreManager implements Model {
         } else {
             List<Long> idList = new ArrayList<>();
             idList.add(childId);
-            transactionOfTypes.put(String.valueOf(newParent), idList);
+            transactionParentToChild.put(String.valueOf(newParent), idList);
         }
     }
 
-    public double
+    public double calculateSumIncludingChildren(long parentId){
+        double sum = 0;
+        String parentKey = String.valueOf(parentId);
+        if (transactionParentToChild.containsKey(parentKey)){
+            // Sum up all the children
+            List<Long> childList = transactionParentToChild.get(String.valueOf(parentId));
+            for (long item : childList) {
+                Transaction trans = getTransactionById(String.valueOf(item));
+                sum += trans.getAmount();
+            }
+        }
+        // Add own value
+        if (transactions.containsKey(parentKey)) {
+            sum += getTransactionById(parentKey).getAmount();
+        }
+        return sum;
+    }
 
     public Transaction handleTransactionTypeChange(Transaction transaction, String newType) {
         // Check if the transaction type changed
